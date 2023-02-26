@@ -1,0 +1,67 @@
+.button {
+  display: inline-block;
+  width: 100%;
+  border-radius: .4rem;
+  border: none;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button.clicked {
+  animation: ripple 1s;
+}
+
+.button.text {
+  color: #2196f3;
+}
+
+.button.outlined {
+  color: #2196f3;
+  background-color: transparent;
+  border: 1px solid #2196f3;
+}
+
+.button.outlined:hover {
+  background-color: rgba(33, 150, 243, 0.1);
+}
+
+.button.contained {
+  color: white;
+  background-color: #2196f3;
+}
+
+.button.contained:hover {
+  background-color: #1976d2;
+}
+
+.button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.disabled {
+  background-color: #cccccc;
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 30px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 50px rgba(0, 0, 0, 0);
+  }
+}

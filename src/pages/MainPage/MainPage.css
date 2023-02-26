@@ -1,0 +1,13 @@
+.main-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.bg-image {
+  background-image: url("../../assets/images/casino-bg.jpeg");
+  background-size: cover;
+  background-position: center;
+}

@@ -1,15 +1,6 @@
 import React from 'react';
 import './InputField.css';
-
-interface InputProps {
-  label: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  className?: string;
-  disabled?: boolean;
-  error?: boolean;
-}
+import { InputProps } from './types';
 
 const InputField = ({
   label,

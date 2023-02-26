@@ -2,11 +2,7 @@ import React from 'react';
 import './Modal.css';
 import { faRemove } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-interface ModalProps {
-  onClose: () => void;
-  children: any;
-}
+import { ModalProps } from './types';
 
 const Modal = ({ children, onClose }: ModalProps): JSX.Element => (
   <div className="modal">

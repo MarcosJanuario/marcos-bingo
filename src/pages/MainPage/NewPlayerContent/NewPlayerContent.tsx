@@ -8,10 +8,7 @@ import ColorPicker from '../../../components/ColorPicker/ColorPicker';
 import { Player } from '../../../utils/types';
 import PlayersContext from '../../../store/PlayersContext';
 import { generateRandomId } from '../../../utils/methods';
-
-const INITIAL_COLORS = ['#29B6F6', '#EF5350', '#66BB6A', '#FFEE58'];
-const DEFAULT_PLAYER = { id: '', name: '', stoneColor: '' };
-const MAX_PLAYERS = 3;
+import { DEFAULT_PLAYER, INITIAL_COLORS, MAX_PLAYERS } from '../../../utils/constants';
 
 const NewPlayerContent = (): JSX.Element => {
   const [player, setPlayer] = useState<Player>(DEFAULT_PLAYER);
@@ -19,7 +16,6 @@ const NewPlayerContent = (): JSX.Element => {
 
   useEffect(() => {
     updateState('stoneColor', INITIAL_COLORS[playersCtx.players.length]);
-    console.log('playersCtx: ', playersCtx);
   }, []);
 
   const addPlayer = (): void => {
@@ -94,7 +90,11 @@ const NewPlayerContent = (): JSX.Element => {
 
       <div className="spacer" />
 
-      <ButtonEffect label="Start Game" onClick={addPlayer} disabled={leesThanTwoPlayers()} />
+      <ButtonEffect
+        label="Start Game"
+        onClick={() => console.log('starting game...')}
+        disabled={leesThanTwoPlayers()}
+      />
     </div>
   );
 };

@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import './ButtonEffect.css';
-
-interface ButtonProps {
-  label: string;
-  onClick?: () => void;
-  variant?: 'text' | 'outlined' | 'contained';
-  color?: 'default' | 'primary' | 'secondary';
-  disabled?: boolean;
-  className?: string;
-}
+import { ButtonProps } from './types';
 
 const ButtonEffect = ({
   label,

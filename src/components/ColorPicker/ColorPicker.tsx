@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ColorPicker.css';
-
-interface ColorPickerProps {
-  label: string;
-  defaultColor: string;
-  onColorPicked: (color: string) => void;
-}
+import { ColorPickerProps } from './types';
 
 const ColorPicker = ({ label, defaultColor, onColorPicked }: ColorPickerProps): JSX.Element => {
   const [color, setColor] = useState(defaultColor);

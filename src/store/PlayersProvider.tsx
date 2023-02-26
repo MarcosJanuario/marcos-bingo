@@ -2,21 +2,10 @@ import React, { useReducer } from 'react';
 import { Player } from '../utils/types';
 import PlayersContext from './PlayersContext';
 import { cloneDeep } from 'lodash';
+import { DEFAULT_PLAYER_STATE } from '../utils/constants';
+import { PlayersAction, PlayersProviderProps, PlayersState } from './types';
 
-const defaultPlayersState = {
-  players: []
-};
-
-interface PlayersReducerState {
-  players: Player[];
-}
-
-interface ActionReducer {
-  type: string;
-  player: Player;
-}
-
-const playersReducer = (state: PlayersReducerState, action: ActionReducer) => {
+const playersReducer = (state: PlayersState, action: PlayersAction) => {
   if (action.type === 'ADD') {
     const tempPlayers = cloneDeep(state.players);
     tempPlayers.push(action.player);
@@ -38,15 +27,11 @@ const playersReducer = (state: PlayersReducerState, action: ActionReducer) => {
     };
   }
 
-  return defaultPlayersState;
+  return DEFAULT_PLAYER_STATE;
 };
 
-interface PlayersProviderProps {
-  children: any;
-}
-
 const PlayersProvider = ({ children }: PlayersProviderProps) => {
-  const [playersState, dispatchPlayers] = useReducer(playersReducer, defaultPlayersState);
+  const [playersState, dispatchPlayers] = useReducer(playersReducer, DEFAULT_PLAYER_STATE);
 
   const addPlayerHandler = (player: Player) => dispatchPlayers({ type: 'ADD', player: player });
 

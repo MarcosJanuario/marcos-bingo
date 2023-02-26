@@ -1,0 +1,43 @@
+.new-player-content-wrapper {
+
+}
+
+.players-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 0 1rem;
+}
+
+.players-wrapper .header span {
+  font-weight: bold;
+}
+
+.players-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid #cccccc;
+  padding: 1rem 0;
+  border-radius: 0.4rem;
+  margin-top: 0.2rem;
+  background-image:
+          repeating-linear-gradient(45deg, #FFEBEE, #FFEBEE .4rem, #FFCDD2 .4rem, #FFCDD2 .8rem),
+          linear-gradient(to right, #dddddd, #dddddd);
+  background-size: 100%;
+  position: relative;
+}
+
+.players-list-wrapper span {
+  font-size: .7rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.centered {
+  justify-content: center;
+}
+
+.players-list-wrapper span {
+
+}

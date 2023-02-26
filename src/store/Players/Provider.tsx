@@ -2,10 +2,10 @@ import React, { useReducer } from 'react';
 import { Player } from '../../utils/types';
 import Context from './Context';
 import { DEFAULT_PLAYER_STATE } from '../../utils/constants';
-import { PlayersProviderProps } from '../types';
+import { ProviderProps } from '../types';
 import { reducer } from './Reducer';
 
-const Provider = ({ children }: PlayersProviderProps) => {
+const Provider = ({ children }: ProviderProps) => {
   const [playersState, dispatchPlayers] = useReducer(reducer, DEFAULT_PLAYER_STATE);
 
   const addPlayerHandler = (player: Player) => dispatchPlayers({ type: 'ADD', player: player });

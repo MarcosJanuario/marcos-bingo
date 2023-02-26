@@ -7,7 +7,7 @@ export interface PlayersContext {
   reset: () => void;
 }
 
-export interface PlayersProviderProps {
+export interface ProviderProps {
   children: any;
 }
 
@@ -18,4 +18,13 @@ export interface PlayersState {
 export interface PlayersAction {
   type: string;
   player: Player;
+}
+
+export interface DrawState {
+  numbers: number[];
+  drawnNumbers: number[];
+}
+
+export interface DrawAction {
+  type: string;
 }

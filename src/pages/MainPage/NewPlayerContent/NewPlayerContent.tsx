@@ -9,10 +9,12 @@ import { Player } from '../../../utils/types';
 import Context from '../../../store/Players/Context';
 import { generateRandomId } from '../../../utils/methods';
 import { DEFAULT_PLAYER, INITIAL_COLORS, MAX_PLAYERS } from '../../../utils/constants';
+import { useNavigate } from 'react-router-dom';
 
 const NewPlayerContent = (): JSX.Element => {
   const [player, setPlayer] = useState<Player>(DEFAULT_PLAYER);
   const playersCtx = useContext(Context);
+  const navigate = useNavigate();
 
   useEffect(() => {
     updateState('stoneColor', INITIAL_COLORS[playersCtx.players.length]);
@@ -92,7 +94,7 @@ const NewPlayerContent = (): JSX.Element => {
 
       <ButtonEffect
         label="Start Game"
-        onClick={() => console.log('starting game...')}
+        onClick={() => navigate('/game-room')}
         disabled={leesThanTwoPlayers()}
       />
     </div>

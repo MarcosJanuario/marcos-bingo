@@ -1,44 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './NewPlayerContent.css';
 import ButtonEffect from '../../../components/ButtonEffect/ButtonEffect';
 import InputField from '../../../components/InputField/InputField';
 import { cloneDeep } from 'lodash';
-import type { Player } from './Types';
 import PlayerListItem from './PlayerListItem/PlayerListItem';
 import ColorPicker from '../../../components/ColorPicker/ColorPicker';
+import { Player } from '../../../utils/types';
+import PlayersContext from '../../../store/PlayersContext';
+import { generateRandomId } from '../../../utils/methods';
 
-const INITIAL_COLORS = ['#29B6F6', '#EF5350', '#66BB6A'];
+const INITIAL_COLORS = ['#29B6F6', '#EF5350', '#66BB6A', '#FFEE58'];
 const DEFAULT_PLAYER = { id: '', name: '', stoneColor: '' };
 const MAX_PLAYERS = 3;
 
 const NewPlayerContent = (): JSX.Element => {
-  const [players, setPlayers] = useState<Player[]>([]);
   const [player, setPlayer] = useState<Player>(DEFAULT_PLAYER);
+  const playersCtx = useContext(PlayersContext);
 
   useEffect(() => {
-    updateState('stoneColor', INITIAL_COLORS[players.length]);
+    updateState('stoneColor', INITIAL_COLORS[playersCtx.players.length]);
+    console.log('playersCtx: ', playersCtx);
   }, []);
 
   const addPlayer = (): void => {
-    const tempPlayers = cloneDeep(players);
     const tempPlayer = cloneDeep(player);
     tempPlayer.id = generateRandomId();
-    tempPlayers.push(tempPlayer);
-    setPlayers(tempPlayers);
+    playersCtx.addPlayer(tempPlayer);
     setPlayer({
       id: '',
       name: '',
-      stoneColor: INITIAL_COLORS[tempPlayers.length]
+      stoneColor: INITIAL_COLORS[playersCtx.players.length + 1]
     });
   };
 
-  const handleNameChange = (newName: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleNameChange = (newName: React.ChangeEvent<HTMLInputElement>): void =>
     updateState('name', newName.target.value);
-  };
 
-  const handleColorPicker = (newColor: string): void => {
-    updateState('stoneColor', newColor);
-  };
+  const handleColorPicker = (newColor: string): void => updateState('stoneColor', newColor);
 
   const updateState = (prop: string, value: string): void => {
     const tempPlayer = cloneDeep(player);
@@ -48,19 +46,12 @@ const NewPlayerContent = (): JSX.Element => {
     setPlayer(tempPlayer);
   };
 
-  const onRemove = (index: number): void => {
-    const tempPlayers = cloneDeep(players);
-    tempPlayers.splice(index, 1);
-    setPlayers(tempPlayers);
-  };
+  const onRemove = (player: Player): void => playersCtx.removePlayer(player);
 
-  const noPlayers = (): boolean => players.length === 0;
-
-  const generateRandomId = (): string => {
-    const array = new Uint32Array(2);
-    window.crypto.getRandomValues(array);
-    return `${array[0]}${array[1]}`;
-  };
+  const noPlayers = (): boolean => playersCtx.players.length === 0;
+  const threeOrMorePlayers = (): boolean => playersCtx.players.length >= 3;
+  const leesThanTwoPlayers = (): boolean => playersCtx.players.length < 2;
+  const limitOfPlayersReached = (): boolean => playersCtx.players.length === MAX_PLAYERS;
 
   return (
     <div className="new-player-content-wrapper">
@@ -70,20 +61,26 @@ const NewPlayerContent = (): JSX.Element => {
         </div>
         <div
           className={`players-list-wrapper ${noPlayers() && 'no-players'} ${
-            players.length === 0 && 'centered'
+            noPlayers() && 'centered'
           }`}>
-          {players.length === 0 && <span>No Players. Please add at least 2</span>}
-          {players.map((player: Player, index: number) => (
-            <PlayerListItem key={index} player={player} onRemove={onRemove} index={index} />
+          {noPlayers() && <span>No Players. Please add at least 2</span>}
+          {playersCtx.players.map((player: Player, index: number) => (
+            <PlayerListItem key={index} player={player} onRemove={onRemove} />
           ))}
         </div>
       </div>
 
-      <InputField label="Player Name" value={player.name} onChange={handleNameChange} />
+      <InputField
+        label="Player Name"
+        error={!player.name}
+        value={player.name}
+        onChange={handleNameChange}
+        disabled={threeOrMorePlayers()}
+      />
 
       <ColorPicker
         label="Choose a player color"
-        defaultColor={INITIAL_COLORS[players.length]}
+        defaultColor={INITIAL_COLORS[playersCtx.players.length]}
         onColorPicked={handleColorPicker}
       />
 
@@ -92,12 +89,12 @@ const NewPlayerContent = (): JSX.Element => {
       <ButtonEffect
         label="Add Player"
         onClick={addPlayer}
-        disabled={player.name === '' || players.length === MAX_PLAYERS}
+        disabled={player.name === '' || limitOfPlayersReached()}
       />
 
       <div className="spacer" />
 
-      <ButtonEffect label="Start Game" onClick={addPlayer} disabled={players.length < 2} />
+      <ButtonEffect label="Start Game" onClick={addPlayer} disabled={leesThanTwoPlayers()} />
     </div>
   );
 };

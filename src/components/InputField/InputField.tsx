@@ -7,6 +7,8 @@ interface InputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   className?: string;
+  disabled?: boolean;
+  error?: boolean;
 }
 
 const InputField = ({
@@ -14,11 +16,21 @@ const InputField = ({
   value,
   onChange,
   placeholder,
-  className
+  className,
+  disabled = false,
+  error = false
 }: InputProps): JSX.Element => (
-  <div className={`input-field ${className}`}>
+  <div className={`input-field ${className ? className : ''}`}>
     <label htmlFor={label}>{label}</label>
-    <input type="text" id={label} value={value} onChange={onChange} placeholder={placeholder} />
+    <input
+      style={{ border: `1px solid ${error ? '#FF1744' : '#cccccc'}` }}
+      type="text"
+      id={label}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      disabled={disabled}
+    />
   </div>
 );
 

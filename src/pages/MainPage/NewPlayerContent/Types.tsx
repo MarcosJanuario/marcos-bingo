@@ -1,11 +1,6 @@
-export interface Player {
-  id: string;
-  name: string;
-  stoneColor: string;
-}
+import { Player } from '../../../utils/types';
 
 export interface PlayerListItemProps {
   player: Player;
-  onRemove: (index: number) => void;
-  index: number;
+  onRemove: (player: Player) => void;
 }

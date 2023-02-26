@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './MainMenu.css';
 import ButtonEffect from '../../../components/ButtonEffect/ButtonEffect';
 import Modal from '../../../components/Modal/Modal';
 import NewPlayerContent from '../NewPlayerContent/NewPlayerContent';
+import PlayersContext from '../../../store/PlayersContext';
 
 const MainMenu = (): JSX.Element => {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const playersCtx = useContext(PlayersContext);
 
   const test = () => console.log('clicked on change');
 
   const toggleModal = (): void => {
+    playersCtx.reset();
     setShowModal((prevState: boolean) => !prevState);
   };
 

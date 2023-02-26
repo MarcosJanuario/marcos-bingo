@@ -7,9 +7,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.modal-close-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.modal-close-icon {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: #ffffff;
+  padding: .5vw;
+  cursor: pointer;
 }
 
 .modal-content {
+  position: relative;
   background-color: #ffffff;
   border-radius: .4rem;
   padding: 1rem;

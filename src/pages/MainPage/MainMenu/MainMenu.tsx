@@ -19,7 +19,7 @@ const MainMenu = (): JSX.Element => {
       <div className="spacer" />
       <ButtonEffect label="New Game" onClick={toggleModal} />
       {showModal && (
-        <Modal>
+        <Modal onClose={() => setShowModal(false)}>
           <NewPlayerContent />
         </Modal>
       )}

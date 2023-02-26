@@ -12,6 +12,19 @@
 .modal-content {
   background-color: #ffffff;
   border-radius: .4rem;
-  padding: 20px;
-  max-width: 500px;
+  padding: 1rem;
+  width: 30vw;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .modal-content {
+    width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .modal-content {
+    width: 70vw;
+  }
 }

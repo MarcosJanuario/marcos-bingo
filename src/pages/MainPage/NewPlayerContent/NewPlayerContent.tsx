@@ -6,13 +6,13 @@ import { cloneDeep } from 'lodash';
 import PlayerListItem from './PlayerListItem/PlayerListItem';
 import ColorPicker from '../../../components/ColorPicker/ColorPicker';
 import { Player } from '../../../utils/types';
-import PlayersContext from '../../../store/PlayersContext';
+import Context from '../../../store/Players/Context';
 import { generateRandomId } from '../../../utils/methods';
 import { DEFAULT_PLAYER, INITIAL_COLORS, MAX_PLAYERS } from '../../../utils/constants';
 
 const NewPlayerContent = (): JSX.Element => {
   const [player, setPlayer] = useState<Player>(DEFAULT_PLAYER);
-  const playersCtx = useContext(PlayersContext);
+  const playersCtx = useContext(Context);
 
   useEffect(() => {
     updateState('stoneColor', INITIAL_COLORS[playersCtx.players.length]);

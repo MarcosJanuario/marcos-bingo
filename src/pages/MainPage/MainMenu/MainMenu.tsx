@@ -3,11 +3,11 @@ import './MainMenu.css';
 import ButtonEffect from '../../../components/ButtonEffect/ButtonEffect';
 import Modal from '../../../components/Modal/Modal';
 import NewPlayerContent from '../NewPlayerContent/NewPlayerContent';
-import PlayersContext from '../../../store/PlayersContext';
+import Context from '../../../store/Players/Context';
 
 const MainMenu = (): JSX.Element => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const playersCtx = useContext(PlayersContext);
+  const playersCtx = useContext(Context);
 
   const test = () => console.log('clicked on change');
 

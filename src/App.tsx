@@ -2,7 +2,7 @@ import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
 import MainPage from './pages/MainPage/MainPage';
-import PlayersProvider from './store/PlayersProvider';
+import PlayersProvider from './store/Players/Provider';
 
 const App = () => {
   const bingoRouter = createBrowserRouter([

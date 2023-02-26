@@ -1,7 +1,7 @@
 import { createContext } from 'react';
-import { Player } from '../utils/types';
+import { Player } from '../../utils/types';
 
-const PlayersContext = createContext({
+const Context = createContext({
   players: [],
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   addPlayer: (_player: Player) => {},
@@ -11,4 +11,4 @@ const PlayersContext = createContext({
   reset: () => {}
 });
 
-export default PlayersContext;
+export default Context;

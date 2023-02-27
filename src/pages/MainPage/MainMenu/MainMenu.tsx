@@ -18,7 +18,7 @@ const MainMenu = (): JSX.Element => {
 
   return (
     <div className="main-menu-wrapper">
-      <ButtonEffect label="Top 10 winners" onClick={test} disabled={true} />
+      <ButtonEffect label="Top 10 Luckiest People" onClick={test} disabled={true} />
       <div className="spacer" />
       <ButtonEffect label="New Game" onClick={toggleModal} />
       {showModal && (

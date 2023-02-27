@@ -1,0 +1,41 @@
+.bingo-number {
+  font-size: .5rem;
+  width: 2vw;
+  height: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #212121;
+  border-radius: 50%;
+  background: #f5f5f5;
+  box-shadow: 1px 1px 0 0 #ffffff;
+  margin: .3rem;
+}
+
+.pool-item:nth-child(1n) {
+  transform: rotate(45deg) translate(0, -50%) rotate(-15deg);
+}
+
+.pool-item:nth-child(2n) {
+  transform: rotate(45deg) translate(0, -20%) rotate(-45deg);
+}
+
+.pool-item:nth-child(3n) {
+  transform: rotate(135deg) translate(22%, -72%) rotate(13deg);
+}
+
+.pool-item:nth-child(4n) {
+  transform: rotate(13deg) translate(0, -20%) rotate(-87deg);
+}
+
+.pool-item:nth-child(5n) {
+  transform: rotate(5deg) translate(22%, -72%) rotate(-65deg);
+}
+
+.pool-item:nth-child(6n) {
+  transform: rotate(50deg) translate(-18%, 23%) rotate(46deg);
+}
+
+.pool-item:nth-child(7n) {
+  transform: rotate(20deg) translate(-90%, 14%) rotate(83deg);
+}

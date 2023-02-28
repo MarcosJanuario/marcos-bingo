@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import './GameRoomPage.scss';
-import GameTable from './GameTable/GameTable';
+import GameTable from '../../components/GameTable/GameTable';
 import BingoDrum from './BingoDrum/BingoDrum';
-import BingoBoard from '../../components/BingoBoard/BingoBoard';
+import BingoBoard from './BingoBoard/BingoBoard';
 import Context from '../../store/Players/Context';
 import { Player } from '../../utils/types';
 
@@ -20,7 +20,7 @@ const GameRoomPage = (): JSX.Element => {
             <div className="player-table-header" style={{ backgroundColor: player.stoneColor }}>
               <span>{player.name}</span>
             </div>
-            <BingoBoard />
+            <BingoBoard player={player} />
           </div>
         </GameTable>
       ))}

@@ -1,4 +1,5 @@
 export interface ModalProps {
-  onClose: () => void;
+  showCloseButton?: boolean;
+  onClose?: () => void;
   children: any;
 }

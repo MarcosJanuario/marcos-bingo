@@ -3,12 +3,24 @@ import './BingoPiece.scss';
 
 interface BingoPieceProps {
   piece: number;
+  color?: string;
+  absolute?: boolean;
 }
 
-const BingoPiece = ({ piece }: BingoPieceProps): JSX.Element => (
-  <div key={piece} className="bingo-number pool-item">
-    {piece}
-  </div>
-);
+const BingoPiece = ({ piece, color, absolute = false }: BingoPieceProps): JSX.Element => {
+  const stoneStyle = {
+    background: color ?? '#f5f5f5',
+    boxShadow: `1px 2px 0 0 ${color ?? '#ffffff'}`
+  };
+
+  return (
+    <div
+      key={piece}
+      className={`bingo-number pool-item ${absolute && 'absolute'}`}
+      style={stoneStyle}>
+      {piece}
+    </div>
+  );
+};
 
 export default BingoPiece;

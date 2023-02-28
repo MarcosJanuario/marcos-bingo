@@ -38,7 +38,10 @@ export const createUnorderedMatrix = (): (string | number)[][] => {
   return matrix;
 };
 
-export const hasBingo = (matrix: any[][], nums: number[]) => {
+export const hasBingo = (
+  matrix: any[][],
+  nums: number[]
+): { hasBingo: boolean; bingoStones?: any[] } => {
   // Check rows
   for (let i = 0; i < matrix.length; i++) {
     let count = 0;
@@ -51,30 +54,39 @@ export const hasBingo = (matrix: any[][], nums: number[]) => {
       }
     }
     if (count + emptyCount === matrix[i].length && count >= 4) {
-      return true;
+      return { hasBingo: true, bingoStones: matrix[i] };
     }
   }
 
   // Check columns
   for (let i = 0; i < matrix.length; i++) {
     let count = 0;
+    const columnsStone = [];
     let emptyCount = 0;
     for (let j = 0; j < matrix[i].length; j++) {
       if (matrix[j][i] === '') {
         emptyCount++;
       } else if (nums.includes(matrix[j][i])) {
+        columnsStone.push(matrix[j][i]);
         count++;
       }
     }
     if (count + emptyCount === matrix.length && count >= 4) {
-      return true;
+      return { hasBingo: true, bingoStones: columnsStone };
     }
   }
 
   // Check diagonals
   let diag1Count = 0;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const diag1Stones = [];
+
   let diag1EmptyCount = 0;
+
   let diag2Count = 0;
+  const diag2Stones = [];
+
   let diag2EmptyCount = 0;
   for (let i = 0; i < matrix.length; i++) {
     if (matrix[i][i] === '') {
@@ -85,15 +97,19 @@ export const hasBingo = (matrix: any[][], nums: number[]) => {
     if (matrix[i][matrix.length - i - 1] === '') {
       diag2EmptyCount++;
     } else if (nums.includes(matrix[i][matrix.length - i - 1])) {
+      diag2Stones.push(matrix[i][matrix.length - i - 1]);
+      // console.log('num diagonal: ', matrix[i][matrix.length - i - 1]);
       diag2Count++;
     }
   }
   if (diag1Count + diag1EmptyCount === matrix.length && diag1Count >= 4) {
-    return true;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return { hasBingo: true, bingoStones: diag1Stones };
   }
   if (diag2Count + diag2EmptyCount === matrix.length && diag2Count >= 4) {
-    return true;
+    return { hasBingo: true, bingoStones: diag2Stones };
   }
 
-  return false;
+  return { hasBingo: false };
 };

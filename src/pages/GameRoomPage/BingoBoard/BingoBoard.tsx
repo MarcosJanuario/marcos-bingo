@@ -3,6 +3,7 @@ import './bingoBoard.css';
 import { createUnorderedMatrix, hasBingo } from '../../../utils/methods';
 import DrawContext from '../../../store/Draw/Context';
 import { Player } from '../../../utils/types';
+import BingoPiece from '../../../components/BingoPiece/BingoPiece';
 
 interface BingoBoardProps {
   player: Player;
@@ -14,12 +15,15 @@ const BingoBoard = ({ player }: BingoBoardProps) => {
   const drawCtx = useContext(DrawContext);
 
   useEffect((): void => {
-    console.log('NEW NUMBER DRAW. Checking bingo...: ', matrix);
-    if (hasBingo(matrix, drawCtx.drawnNumbers)) {
-      console.log('BINGO!!!: ', matrix);
+    if (hasBingo(matrix, drawCtx.drawnNumbers).hasBingo) {
+      console.log('BINGO!!!: ', hasBingo(matrix, drawCtx.drawnNumbers));
       console.log(`${player.name} WON!`);
     }
   }, [drawCtx.drawnNumbers]);
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const isDrawn = (stone: number): boolean => drawCtx.drawnNumbers.includes(stone);
 
   return (
     <div className="bingo-board">
@@ -29,10 +33,18 @@ const BingoBoard = ({ player }: BingoBoardProps) => {
         </div>
       ))}
 
-      {matrix.map((row, rowIndex) =>
-        row.map((number, colIndex) => (
+      {matrix.map((row: (string | number)[], rowIndex: number) =>
+        row.map((number: string | number, colIndex: number) => (
           <div key={`${rowIndex}-${colIndex}`} className="bingo-cell number-cell">
             {number}
+            {isDrawn(Number(number)) && (
+              <BingoPiece
+                key={number}
+                piece={Number(number)}
+                color={player.stoneColor}
+                absolute={true}
+              />
+            )}
           </div>
         ))
       )}

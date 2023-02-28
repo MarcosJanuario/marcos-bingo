@@ -1,19 +1,22 @@
 .bingo-number {
   font-size: 1rem;
+  font-weight: bold;
   width: 2vw;
   height: 2vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #212121;
+  border: 3px solid #212121;
   border-radius: 50%;
-  background: #f5f5f5;
-  box-shadow: 1px 1px 0 0 #ffffff;
   margin: .3rem;
 }
 
+.absolute {
+  position: absolute;
+}
+
 .pool-item:nth-child(1n) {
-  transform: rotate(45deg) translate(0, -50%) rotate(-15deg);
+  transform: rotate(30deg) translate(9%, -5%) rotate(15deg);
 }
 
 .pool-item:nth-child(2n) {
@@ -25,7 +28,7 @@
 }
 
 .pool-item:nth-child(4n) {
-  transform: rotate(13deg) translate(0, -20%) rotate(-87deg);
+  transform: rotate(13deg) translate(0, 0) rotate(-87deg);
 }
 
 .pool-item:nth-child(5n) {

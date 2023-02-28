@@ -9,3 +9,10 @@
 .spacer {
   width: 1rem;
 }
+
+
+@media only screen and (max-width: 730px) {
+  .bingo-drum-wrapper {
+    flex-direction: column;
+  }
+}

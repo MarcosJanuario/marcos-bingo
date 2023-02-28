@@ -1,0 +1,7 @@
+@mixin shaded-font($gradient1, $gradient2) {
+  font-weight: bold;
+  background-image: linear-gradient(to left, $gradient1 45%, $gradient2);
+  color: transparent;
+  -webkit-background-clip: text;
+  font-size: 2rem;
+}

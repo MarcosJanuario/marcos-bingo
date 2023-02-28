@@ -1,0 +1,35 @@
+@import 'src/utils/shared-styles';
+
+.game-room-wrapper {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bg-image {
+  background-image: url("../../assets/images/dices-bg.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.player-table-wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  .player-table-header {
+    display: flex;
+    width: 100%;
+    margin: 0 0 1rem 0;
+    justify-content: center;
+    border-radius: 0.4rem;
+    align-items: center;
+
+    span {
+      @include shaded-font(#4E342E, #212121);
+    }
+  }
+}

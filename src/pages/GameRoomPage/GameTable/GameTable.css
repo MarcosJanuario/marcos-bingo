@@ -6,4 +6,5 @@
   backdrop-filter: blur(10px);
   border-radius: .4rem;
   padding: 1rem;
+  margin: 0 0 1rem 0;
 }

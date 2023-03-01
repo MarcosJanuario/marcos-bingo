@@ -4,10 +4,13 @@
   grid-template-rows: auto repeat(5, 1fr);
   gap: 1rem;
   padding: 1rem;
-  border: 1px solid #cccccc;
+  border: 2px solid #212121;
   border-radius: 20px;
-  box-shadow: 1px 0 4px 2px #cccccc;
   min-width: 210px;
+  background-color: #d7b899;
+  background-image: url('../../../assets/images/paper-bg.jpeg');
+  background-repeat: repeat;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .bingo-cell {
@@ -19,6 +22,7 @@
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
+  min-height: 3rem;
 }
 
 .letter-cell {
@@ -29,3 +33,4 @@
 .number-cell:hover {
   transform: scale(1.1);
 }
+

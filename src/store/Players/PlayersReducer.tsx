@@ -3,7 +3,7 @@ import { cloneDeep } from 'lodash';
 import { Player } from '../../utils/types';
 import { DEFAULT_PLAYER_STATE } from '../../utils/constants';
 
-export const reducer = (state: PlayersState, action: PlayersAction) => {
+export const playersReducer = (state: PlayersState, action: PlayersAction) => {
   if (action.type === 'ADD') {
     const tempPlayers = cloneDeep(state.players);
     tempPlayers.push(action.player);
@@ -21,7 +21,15 @@ export const reducer = (state: PlayersState, action: PlayersAction) => {
   }
   if (action.type === 'RESET') {
     return {
-      players: []
+      players: [],
+      winner: null
+    };
+  }
+
+  if (action.type === 'SET_WINNER') {
+    return {
+      players: state.players,
+      winner: action.player
     };
   }
 

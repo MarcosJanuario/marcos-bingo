@@ -13,6 +13,7 @@ export interface ProviderProps {
 
 export interface PlayersState {
   players: Player[];
+  winner?: null | Player;
 }
 
 export interface PlayersAction {

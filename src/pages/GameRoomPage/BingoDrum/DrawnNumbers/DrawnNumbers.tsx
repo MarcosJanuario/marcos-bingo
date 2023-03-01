@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './DrawnNumbers.scss';
-import DrawContext from '../../../../store/Draw/Context';
+import DrawContext from '../../../../store/Draw/DrawContext';
 import BingoPiece from '../../../../components/BingoPiece/BingoPiece';
 
 const DrawnNumbers = (): JSX.Element => {

@@ -1,0 +1,45 @@
+.winner-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 0 1rem;
+
+  .winner-image {
+    display: flex;
+    width: 30vw;
+    height: 30vw;
+    background-image: url('../../../../assets/images/bingo-male.gif');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .male {
+    background-image: url('../../../../assets/images/bingo-male.gif');
+  }
+
+  .female {
+    background-image: url('../../../../assets/images/bingo-female.gif');
+  }
+
+  .winner-content-player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+
+    span {
+      font-size: 2rem;
+    }
+  }
+
+  .winner-content-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+  }
+}

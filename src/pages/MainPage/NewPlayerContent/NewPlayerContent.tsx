@@ -5,15 +5,16 @@ import InputField from '../../../components/InputField/InputField';
 import { cloneDeep } from 'lodash';
 import PlayerListItem from './PlayerListItem/PlayerListItem';
 import ColorPicker from '../../../components/ColorPicker/ColorPicker';
-import { Player } from '../../../utils/types';
-import Context from '../../../store/Players/Context';
+import { Gender, Player } from '../../../utils/types';
+import PlayersContext from '../../../store/Players/PlayersContext';
 import { generateRandomId } from '../../../utils/methods';
 import { DEFAULT_PLAYER, INITIAL_COLORS, MAX_PLAYERS } from '../../../utils/constants';
 import { useNavigate } from 'react-router-dom';
+import GenderSelector from '../../../components/GenderSelector/GenderSelector';
 
 const NewPlayerContent = (): JSX.Element => {
   const [player, setPlayer] = useState<Player>(DEFAULT_PLAYER);
-  const playersCtx = useContext(Context);
+  const playersCtx = useContext(PlayersContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,7 +28,8 @@ const NewPlayerContent = (): JSX.Element => {
     setPlayer({
       id: '',
       name: '',
-      stoneColor: INITIAL_COLORS[playersCtx.players.length + 1]
+      stoneColor: INITIAL_COLORS[playersCtx.players.length + 1],
+      gender: 'male'
     });
   };
 
@@ -81,6 +83,10 @@ const NewPlayerContent = (): JSX.Element => {
         defaultColor={INITIAL_COLORS[playersCtx.players.length]}
         onColorPicked={handleColorPicker}
       />
+
+      <div className="spacer" />
+
+      <GenderSelector onChange={(gender: Gender) => updateState('gender', gender)} />
 
       <div className="spacer" />
 

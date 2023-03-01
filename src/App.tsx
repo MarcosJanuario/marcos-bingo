@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
 import MainPage from './pages/MainPage/MainPage';
-import PlayersProvider from './store/Players/Provider';
+import PlayersProvider from './store/Players/PlayersProvider';
 import GameRoomPage from './pages/GameRoomPage/GameRoomPage';
-import DrawProvider from './store/Draw/Provider';
+import DrawProvider from './store/Draw/DrawProvider';
+import DrawContext from './store/Draw/DrawContext';
 
 const App = () => {
+  const drawCtx = useContext(DrawContext);
+
+  useEffect(() => {
+    if (drawCtx.numbers.length === 0) {
+      drawCtx.reset();
+    }
+  }, []);
+
   const bingoRouter = createBrowserRouter([
     {
       path: '/',

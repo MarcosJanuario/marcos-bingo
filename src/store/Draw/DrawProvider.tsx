@@ -1,11 +1,11 @@
 import React, { useReducer } from 'react';
-import Context from './Context';
+import Context from './DrawContext';
 import { DEFAULT_DRAW_STATE } from '../../utils/constants';
 import { ProviderProps } from '../types';
-import { reducer } from './Reducer';
+import { drawReducer } from './DrawReducer';
 
 const DrawProvider = ({ children }: ProviderProps) => {
-  const [drawState, dispatchDraw] = useReducer(reducer, DEFAULT_DRAW_STATE);
+  const [drawState, dispatchDraw] = useReducer(drawReducer, DEFAULT_DRAW_STATE);
 
   const drawHandler = () => dispatchDraw({ type: 'DRAW' });
 

@@ -1,0 +1,28 @@
+@import 'src/utils/shared-styles';
+
+.winners-list-wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  .winners-header {
+    display: flex;
+    width: 100%;
+    padding: .4rem 0;
+    justify-content: center;
+
+    span {
+      @include shaded-font(#553c9a, #ee4b2b);
+    }
+  }
+
+  .stored-winner-wrapper {
+    display: flex;
+    width: 100%;
+    padding: .4rem 0;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #212121;
+  }
+}

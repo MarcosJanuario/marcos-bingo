@@ -1,13 +1,10 @@
 import React from 'react';
 import '../bingoBoard.scss';
+import { BINGO_LETTERS } from '../../../../utils/constants';
 
-interface BingoLettersProps {
-  bingoLetters: string[];
-}
-
-const BingoLetters = ({ bingoLetters }: BingoLettersProps): JSX.Element => (
+const BingoLetters = (): JSX.Element => (
   <>
-    {bingoLetters.map((letter, index) => (
+    {BINGO_LETTERS.map((letter: string, index: number) => (
       <div key={index} className="bingo-cell letter-cell">
         {letter}
       </div>

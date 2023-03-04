@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './bingoBoard.scss';
-import { createUnorderedMatrix, hasBingo } from '../../../utils/methods';
+import { createUnorderedMatrix, hasBingo, saveWinnerInLocalStorage } from '../../../utils/methods';
 import DrawContext from '../../../store/Draw/DrawContext';
 import PlayersContext from '../../../store/Players/PlayersContext';
 import { Player } from '../../../utils/types';
@@ -18,17 +18,16 @@ const BingoBoard = ({ player }: BingoBoardProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [bingoNumbers, setBingoNumbers] = useState<(string | number)[]>([]);
   const [matrix] = useState<(string | number)[][]>(createUnorderedMatrix());
-  const bingoLetters = ['B', 'I', 'N', 'G', 'O'];
   const drawCtx = useContext(DrawContext);
   const playersCtx = useContext(PlayersContext);
 
   useEffect((): void => {
     const bingo = hasBingo(matrix, drawCtx.drawnNumbers);
     if (bingo.hasBingo) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       setBingoNumbers(cloneDeep(bingo.bingoStones)!);
       setShowModal(true);
       playersCtx.setWinner(player);
+      saveWinnerInLocalStorage(player);
     }
   }, [drawCtx.drawnNumbers]);
 
@@ -54,7 +53,7 @@ const BingoBoard = ({ player }: BingoBoardProps) => {
         </Modal>
       )}
 
-      <BingoLetters bingoLetters={bingoLetters} />
+      <BingoLetters />
 
       {matrix.map((row: (string | number)[], rowIndex: number) =>
         row.map((number: string | number, colIndex: number) => (

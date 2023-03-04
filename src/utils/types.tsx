@@ -6,3 +6,8 @@ export interface Player {
 }
 
 export type Gender = 'male' | 'female';
+
+export interface StoredWinner {
+  name: string;
+  times: number;
+}

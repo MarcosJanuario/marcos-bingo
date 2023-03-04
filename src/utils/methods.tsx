@@ -1,3 +1,6 @@
+import { Player, StoredWinner } from './types';
+import { cloneDeep } from 'lodash';
+
 export const generateRandomId = (): string => {
   const array = new Uint32Array(2);
   window.crypto.getRandomValues(array);
@@ -112,4 +115,45 @@ export const hasBingo = (
   }
 
   return { hasBingo: false };
+};
+
+export const getLocalStorageWinners = (): StoredWinner[] => {
+  const winners = localStorage.getItem('winners');
+
+  if (!winners) {
+    return [];
+  }
+  return JSON.parse(winners);
+};
+
+export const saveWinnerInLocalStorage = (player: Player): void => {
+  const winners = getLocalStorageWinners();
+
+  const winner = cloneDeep(
+    winners.find(
+      (storedWinner: StoredWinner) =>
+        storedWinner.name.toLowerCase().trim() === player.name.toLowerCase().trim()
+    )
+  ) as StoredWinner;
+
+  if (winner) {
+    winner.times += 1;
+    const originalWinnerIndex = winners.findIndex(
+      (storedWinner: StoredWinner) =>
+        storedWinner.name.toLowerCase().trim() === winner.name.toLowerCase().trim()
+    );
+
+    winners.splice(originalWinnerIndex, 1);
+
+    winners.push(winner);
+  } else {
+    const winner = {
+      name: player.name,
+      times: 1
+    };
+    winners.push(winner);
+  }
+
+  const winnersJSON = JSON.stringify(winners);
+  localStorage.setItem('winners', winnersJSON);
 };

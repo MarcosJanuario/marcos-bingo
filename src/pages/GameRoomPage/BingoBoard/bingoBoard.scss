@@ -1,0 +1,41 @@
+.bingo-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto repeat(5, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px solid #212121;
+  border-radius: 20px;
+  min-width: 210px;
+  background-color: #d7b899;
+  background-image: url('../../../assets/images/paper-bg.jpeg');
+  background-repeat: repeat;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  .bingo-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    min-height: 3rem;
+
+    &.letter-cell {
+      color: #ffffff;
+      background-color: #333333;
+    }
+
+    &.number-cell:hover {
+      transform: scale(1.1);
+    }
+
+    &.drawn-number {
+      background-color: #B2FF59 !important;
+    }
+  }
+}
+
+

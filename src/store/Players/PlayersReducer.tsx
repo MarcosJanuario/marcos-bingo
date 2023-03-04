@@ -21,8 +21,7 @@ export const playersReducer = (state: PlayersState, action: PlayersAction) => {
   }
   if (action.type === 'RESET') {
     return {
-      players: [],
-      winner: null
+      players: []
     };
   }
 

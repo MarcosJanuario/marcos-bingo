@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './bingoBoard.css';
+import './bingoBoard.scss';
 import { createUnorderedMatrix, hasBingo } from '../../../utils/methods';
 import DrawContext from '../../../store/Draw/DrawContext';
 import PlayersContext from '../../../store/Players/PlayersContext';
@@ -7,6 +7,8 @@ import { Player } from '../../../utils/types';
 import BingoPiece from '../../../components/BingoPiece/BingoPiece';
 import Modal from '../../../components/Modal/Modal';
 import WinnerContent from './WinnerContent/WinnerContent';
+import BingoLetters from './BingoLetters/BingoLetters';
+import { cloneDeep } from 'lodash';
 
 interface BingoBoardProps {
   player: Player;
@@ -14,13 +16,17 @@ interface BingoBoardProps {
 
 const BingoBoard = ({ player }: BingoBoardProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [bingoNumbers, setBingoNumbers] = useState<(string | number)[]>([]);
   const [matrix] = useState<(string | number)[][]>(createUnorderedMatrix());
   const bingoLetters = ['B', 'I', 'N', 'G', 'O'];
   const drawCtx = useContext(DrawContext);
   const playersCtx = useContext(PlayersContext);
 
   useEffect((): void => {
-    if (hasBingo(matrix, drawCtx.drawnNumbers).hasBingo) {
+    const bingo = hasBingo(matrix, drawCtx.drawnNumbers);
+    if (bingo.hasBingo) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      setBingoNumbers(cloneDeep(bingo.bingoStones)!);
       setShowModal(true);
       playersCtx.setWinner(player);
     }
@@ -34,6 +40,12 @@ const BingoBoard = ({ player }: BingoBoardProps) => {
     setShowModal(false);
   };
 
+  const isBingoNumber = (stoneNumber: string | number): boolean =>
+    (bingoNumbers.includes(stoneNumber) || (!stoneNumber && bingoNumbers.includes(''))) &&
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    playersCtx.winner?.id === player.id;
+
   return (
     <div className="bingo-board">
       {showModal && (
@@ -42,15 +54,13 @@ const BingoBoard = ({ player }: BingoBoardProps) => {
         </Modal>
       )}
 
-      {bingoLetters.map((letter, index) => (
-        <div key={index} className="bingo-cell letter-cell">
-          {letter}
-        </div>
-      ))}
+      <BingoLetters bingoLetters={bingoLetters} />
 
       {matrix.map((row: (string | number)[], rowIndex: number) =>
         row.map((number: string | number, colIndex: number) => (
-          <div key={`${rowIndex}-${colIndex}`} className="bingo-cell number-cell">
+          <div
+            key={`${rowIndex}-${colIndex}`}
+            className={`bingo-cell number-cell ${isBingoNumber(number) && 'drawn-number'}`}>
             {number}
             {isDrawn(Number(number)) && (
               <BingoPiece

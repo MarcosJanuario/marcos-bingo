@@ -32,6 +32,13 @@ const DrumLottery = (): JSX.Element => {
       }, HIDE_MODAL_TIMER);
     }, SHOW_MODAL_TIMER);
   };
+
+  const handleBackToMenu = (): void => {
+    playersCtx.reset();
+    drawCtx.reset();
+    navigate('/');
+  };
+
   return (
     <div className="drum-lottery-wrapper">
       {showModal && (
@@ -45,10 +52,10 @@ const DrumLottery = (): JSX.Element => {
         ))}
       </div>
       <div className="spacer" />
-      {playersCtx.winner === null ? (
+      {!playersCtx.winner ? (
         <ButtonEffect label="Draw" onClick={draw} disabled={drawCtx.numbers.length === 0} />
       ) : (
-        <ButtonEffect label="Back to Menu" onClick={() => navigate('/')} />
+        <ButtonEffect label="Back to Menu" onClick={() => handleBackToMenu()} />
       )}
     </div>
   );

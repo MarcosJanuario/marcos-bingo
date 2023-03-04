@@ -17,9 +17,21 @@ const ColorPicker = ({ label, defaultColor, onColorPicked }: ColorPickerProps): 
 
   return (
     <div className="color-picker-wrapper">
-      <label htmlFor="color-picker">{label}:</label>
-      <input id="color-picker" type="color" value={color} onChange={handleColorChange} />
-      <div className="color-preview" style={{ backgroundColor: color }} />
+      <label data-testid="label-el" htmlFor="color-picker">
+        {label}:
+      </label>
+      <input
+        data-testid="color-picker"
+        id="color-picker"
+        type="color"
+        value={color}
+        onChange={handleColorChange}
+      />
+      <div
+        data-testid="color-preview"
+        className="color-preview"
+        style={{ backgroundColor: color }}
+      />
     </div>
   );
 };

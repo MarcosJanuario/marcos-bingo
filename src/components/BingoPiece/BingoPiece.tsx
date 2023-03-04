@@ -16,6 +16,7 @@ const BingoPiece = ({ piece, color, absolute = false }: BingoPieceProps): JSX.El
   return (
     <div
       key={piece}
+      data-testid="bingo-piece"
       className={`bingo-number pool-item ${absolute && 'absolute'}`}
       style={stoneStyle}>
       {piece}

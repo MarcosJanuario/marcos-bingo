@@ -14,6 +14,7 @@ const InputField = ({
   <div className={`input-field ${className ? className : ''}`}>
     <label htmlFor={label}>{label}</label>
     <input
+      data-testid="input-field"
       style={{ border: `1px solid ${error ? '#FF1744' : '#cccccc'}` }}
       type="text"
       id={label}

@@ -8,7 +8,7 @@ export interface PlayersContext {
 }
 
 export interface ProviderProps {
-  children: any;
+  children: JSX.Element;
 }
 
 export interface PlayersState {

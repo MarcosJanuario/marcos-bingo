@@ -7,7 +7,7 @@ const DrawnNumbers = (): JSX.Element => {
   const drawCtx = useContext(DrawContext);
 
   return (
-    <div className="drawn-numbers-wrapper">
+    <div data-testid="drawn-numbers" className="drawn-numbers-wrapper">
       <div className="drawn-numbers-header">
         <span>Drawn Numbers</span>
       </div>

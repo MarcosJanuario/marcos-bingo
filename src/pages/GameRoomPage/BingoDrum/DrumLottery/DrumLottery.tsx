@@ -40,7 +40,7 @@ const DrumLottery = (): JSX.Element => {
   };
 
   return (
-    <div className="drum-lottery-wrapper">
+    <div data-testid="drum-lottery" className="drum-lottery-wrapper">
       {showModal && (
         <Modal showCloseButton={false}>
           <DrawingContent />

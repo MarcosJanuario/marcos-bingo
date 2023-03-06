@@ -1,5 +1,53 @@
 .gender-selector-wrapper {
-  label {
+  display: flex;
+  flex-direction: row;
+
+  .radio-label {
+    display: inline-flex;
+    align-items: center;
     cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #212121;
+
+    .radio-input-type {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .styled-radio {
+      display: inline-block;
+      position: relative;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      border-radius: 50%;
+      border: 2px solid #555;
+      transition: all 0.3s ease;
+    }
+
+    .radio-input-type:checked + .styled-radio::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #01579B; // for the dot
+    }
+
+    .radio-input-type:focus + .styled-radio {
+      box-shadow: 0 0 0 3px #80D8FF;
+      outline: none;
+    }
+  }
+
+  .spacer {
+    display: flex;
+    width: 1rem;
   }
 }

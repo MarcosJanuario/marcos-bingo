@@ -9,20 +9,27 @@
     display: flex;
     width: 100%;
     padding: .4rem 0;
-    justify-content: center;
+    justify-content: flex-start;
 
     span {
       @include shaded-font(#553c9a, #ee4b2b);
     }
   }
 
-  .stored-winner-wrapper {
-    display: flex;
-    width: 100%;
-    padding: .4rem 0;
-    justify-content: space-between;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #212121;
+  .winners-list {
+    margin: 1rem 0;
+    border: 1px solid #cccccc;
+    border-radius: 0.4rem;
+    padding: 0 1rem;
+
+    .stored-winner-wrapper {
+      display: flex;
+      width: 100%;
+      padding: .4rem 0;
+      justify-content: space-between;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #212121;
+    }
   }
 }

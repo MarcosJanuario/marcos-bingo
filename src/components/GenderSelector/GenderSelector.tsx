@@ -17,22 +17,31 @@ const GenderSelector = ({ onChange }: GenderSelectorProps): JSX.Element => {
 
   return (
     <div className="gender-selector-wrapper">
-      <label className="radio">
+      <label className="radio-label">
         <input
+          name="my-radio"
+          className="radio-input-type"
           type="radio"
           value="male"
           checked={selectedGender === 'male'}
           onChange={handleGenderChange}
         />
+        <span className="styled-radio" />
         Male
       </label>
-      <label className="radio">
+
+      <div className="spacer" />
+
+      <label className="radio-label">
         <input
+          name="my-radio"
+          className="radio-input-type"
           type="radio"
           value="female"
           checked={selectedGender === 'female'}
           onChange={handleGenderChange}
         />
+        <span className="styled-radio" />
         Female
       </label>
     </div>

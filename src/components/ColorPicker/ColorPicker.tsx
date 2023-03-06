@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './ColorPicker.css';
+import './ColorPicker.scss';
 import { ColorPickerProps } from './types';
 
 const ColorPicker = ({ label, defaultColor, onColorPicked }: ColorPickerProps): JSX.Element => {

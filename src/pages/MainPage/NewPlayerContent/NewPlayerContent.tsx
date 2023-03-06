@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './NewPlayerContent.css';
+import './NewPlayerContent.scss';
 import ButtonEffect from '../../../components/ButtonEffect/ButtonEffect';
 import InputField from '../../../components/InputField/InputField';
 import { cloneDeep } from 'lodash';

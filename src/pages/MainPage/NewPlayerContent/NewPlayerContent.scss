@@ -1,0 +1,38 @@
+@import 'src/utils/shared-styles';
+
+.new-player-content-wrapper {
+  .players-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 0 1rem;
+
+    .header {
+      span {
+        @include shaded-font(#553c9a, #ee4b2b);
+      }
+    }
+
+    .players-list-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: .4rem 0;
+      border-radius: .4rem;
+      margin-top: 0.2rem;
+      position: relative;
+
+      &.centered {
+        justify-content: center;
+      }
+
+      span {
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+        color: #9E9E9E;
+      }
+    }
+
+  }
+}

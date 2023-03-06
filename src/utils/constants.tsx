@@ -10,7 +10,7 @@ export const DEFAULT_PLAYER_STATE = {
 };
 
 export const DEFAULT_DRAW_STATE = {
-  numbers: Array.from({ length: 25 }, (_, i) => i + 1),
+  numbers: Array.from({ length: 24 }, (_, i) => i + 1),
   drawnNumbers: []
 };
 

@@ -22,14 +22,11 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
     min-height: 3rem;
+    cursor: pointer;
 
     &.letter-cell {
       color: #ffffff;
       background-color: #333333;
-    }
-
-    &.number-cell:hover {
-      transform: scale(1.1);
     }
 
     &.drawn-number {
